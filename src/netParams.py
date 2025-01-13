@@ -6,6 +6,7 @@ High-level specifications for M1 network model using NetPyNE
 """
 
 from netpyne import specs
+import os
 
 try:
     from __main__ import cfg # import SimConfig object with params from parent module
@@ -30,8 +31,14 @@ netParams = specs.NetParams() # Object class NetParams to store network paramete
 loadCellParams = True
 saveCellParams = False
 
+# get current path
+base_path = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the correct path to the JSON file
+file_path = os.path.join(base_path, '../cells/Na12HH16HH_TF.json')
+
 if loadCellParams:
-   netParams.loadCellParamsRule(label='PT5B_full', fileName='cells/Na12HH16HH_TF.json')
+   netParams.loadCellParamsRule(label='PT5B_full', fileName=file_path)
 
 #------------------------------------------------------------------------------
 # Includes importing from hoc template or python class, and setting additional params
